@@ -10,6 +10,14 @@ export const AppStyled = styled.div`
     width: 100%;
     height: 80px;
 
+    position: fixed;
+    top: 0;
+
+    z-index: 5;
+    background-color: white;
+
+    border-bottom: 1px solid rgba(221, 221, 221,0.6);
+
     max-width: 80%;
     display: flex;
 
@@ -28,7 +36,9 @@ export const AppStyled = styled.div`
 
   .container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+
+    margin-top: 90px;
     
     display: flex;
     justify-content: center;
@@ -36,54 +46,94 @@ export const AppStyled = styled.div`
     table {
       font-family: 'Roboto', sans-serif;
 
-      width: 700px;
+
+      width: 900px;
       max-width: 80%;
+
+      thead tr {
+        height: 50px;
+      }
 
       tr {
         display: grid;
-        grid-template-columns: 2fr minmax(3rem, 80px) .6fr  ;
+        grid-template-columns: 50% 15% 22%  ;
+        padding: 0 0.5rem;
 
-        height: 60px;
         align-items: center;
+        justify-content: space-between;
 
         text-align: left;
         
+        th {
+          font-weight: 500;
+          
+          font-size: 1.3rem;
+        }
+
         &:first-child {
           padding-left: 1rem;
         }
 
-        th {
+        .repo-title {
           font-weight: 500;
-          font-size: 1.3rem;
 
+          color: #002a69;
         }
         
-        &.repo-title {
-          font-weight: 300;
+        button {
+          line-height: normal;
+          display: flex;
 
-        }
-        
-        #button-field {
-          
-          button {
-            line-height: normal;
-            display: flex;
+          align-items: center;
 
-            align-items: center;
+          background: transparent;
+          border: none;
 
-            background: transparent;
-            border: none;
+          cursor: pointer;
 
-            span {
-              font-size: 1.2rem;
-              padding-left: .4rem;
-            }
+          span {
+            font-size: 1.2rem;
+            padding-left: .4rem;
           }
         }
+
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          
+          row-gap: 8px;
+
+          .btn {
+            display: flex;
+  
+            align-items: center;
+
+            cursor: pointer;
+            
+            &:hover {
+              background-color: gray;
+              
+              color: whitesmoke;
+            }
+
+            svg {
+              margin: 0 0.5rem ;
+            }
+            
+            p {
+              font-size: 14px;
+            }
+  
+          }
+        }
+
+        
       }
 
       tbody tr{
-        background-color: lightgray;
+        background-color: #e0e0e0;
+
+        height: 70px;
 
         padding-left: 1.5rem;
         border-radius: 8px;
