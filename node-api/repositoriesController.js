@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { v4: uuid } = require('uuid');
 
 let getRepositoriesData = require('./repositories-list-handler');
 let repositories;
@@ -28,12 +29,14 @@ app.get('/repositories/:id', (request, response) => {
   response.json(result);
 })
 
-// CREATE NEW
+// CREATE NEW REPOSITORY AND RETURN THE LIST
 app.post('/repositories/', (request, response) => {
+  
   const repository = {
-    ...request.body, 
+    title: request.body.title, 
     likes : 0,
-    id : uuid()
+    id : uuid(),
+    locals: ['local', request.body.isGitRepo =='on' && 'github']
   }
   
   repositories.push(repository);

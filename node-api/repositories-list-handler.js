@@ -8,6 +8,7 @@ async function getRepositories(){
   let filteredRepositories = repositories.map( repository => {
     return { 
       id: uuid(),
+      locals: ['github'],
       title: repository.name,
       SSH_URL: repository.ssh_url,
       url: repository.html_url
