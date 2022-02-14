@@ -6,7 +6,7 @@ let getRepositoriesData = require('./repositories-list-handler');
 let repositories;
 
 (async()=>{
-  repositories = await getRepositoriesData().catch(err => console.log(err));    
+  repositories = await getRepositoriesData().catch(err => console.log(err.code));    
 })()
 
 const app = express();
@@ -47,9 +47,16 @@ app.post('/repositories/', (request, response) => {
 // LIKE REPO
 app.post('/repositories/:id/like', (request, response) => {
   const {id} = request.params;
+  
+  let repository = repositories.filter((repository) => repository.id == id)
+  console.log("Liked repo:", repository);
+  
+  let likes = repository[0].likes +1;
+  console.log("Total likes:", likes);
 
-  let repository = repositories.filter((repository, idx) => repository.id == id)
-  repository.likes+= 1;
+  repositories = repositories
+    .map( repository => repository.id == id ? {...repository, likes } : repository);
+
 
   response.json(repository);
 })

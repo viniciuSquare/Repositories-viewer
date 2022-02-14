@@ -2,7 +2,7 @@ import { useRepositories } from "../../hooks/useRepositories";
 import { api } from "../../services/api";
 import { CreationModalStyled } from "./styled";
 
-export function CreationModal({toggleVisibility}) {
+export function CreationModal({toggleVisibility, updateList}) {
 
   const {setRepositories} = useRepositories();
 
@@ -22,7 +22,7 @@ export function CreationModal({toggleVisibility}) {
 
     let {data:creationResult, status} = await api.post("/", data);
     if(status == 200 || status == 201) {
-      setRepositories(creationResult);
+      updateList(creationResult);
 
       toggleVisibility();
     }

@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const RepositoriesListStyled = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  
-  align-items: center; */
+
+  #empty-list-msg {
+    font-size: 18px;
+    line-height: 3rem;
+
+    margin-top: 1rem;
+
+    color: #636262;
+
+  }
 
   .container {
     width: 100%;
@@ -23,6 +29,9 @@ export const RepositoriesListStyled = styled.div`
 
       thead tr {
         height: 50px;
+
+        border-bottom: 1px solid rgba(221, 221, 221,0.6);
+
       }
 
       tr {

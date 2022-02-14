@@ -10,8 +10,8 @@ export function RepositoriesContextProvider(props) {
     <RepositoriesContext.Provider
       value= {
         {
-        repositories,
-        setRepositories
+          repositories,
+          setRepositories
         }
       }
     >

@@ -1,29 +1,30 @@
-import { useState, useEffect } from "react";
-
 import { RepositoriesListStyled } from './styled';
 
-import axios from 'axios';
-import { GoFileCode, GoLink, GoMarkGithub, GoThumbsup } from "react-icons/go";
+import { GoFileCode, GoLink, GoThumbsup } from "react-icons/go";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { api } from "../../services/api";
+
 import { useRepositories } from "../../hooks/useRepositories";
+import { api } from '../../services/api';
 
 export function RepositoriesList() {
   const { repositories, setRepositories } = useRepositories()
 
   function likeRepository(repoId) {
     const filterRepositoryById = ( repository ) => repository.id == repoId
-
-    let likedRepository = repositories.filter(filterRepositoryById);
     
-    const likes = likedRepository.likes ? likedRepository.likes+1 : 1;
+    let likedRepository = repositories.filter(filterRepositoryById)[0];
+    console.log("Liked repo ID: ", likedRepository);
+    
+    let likes = likedRepository.likes + 1;
     
     const updatedRepositories = repositories
-      .map( repository => repository.id == repoId ? {...repository, likes } : repository);
+    .map( repository => repository.id == repoId ? {...repository, likes } : repository);
+    
+    console.log("Updated repo: ", );
+    api.post(`/${repoId}/like`);
     
     likedRepository = updatedRepositories.filter(filterRepositoryById);
 
-    console.log("Liked repo ID: ", likedRepository);
     setRepositories(updatedRepositories);
   }
   
@@ -41,7 +42,7 @@ export function RepositoriesList() {
           </thead>
           <tbody>
             {
-              repositories?.length >0 &&
+              repositories?.length > 0 ?
                 repositories.map( repository =>{
                   return(
                     <tr key={repository.id} >
@@ -70,6 +71,7 @@ export function RepositoriesList() {
                   )
 
               })
+              : <h1 id="empty-list-msg">Add a new repository to the list <br/>Click the + button</h1>
             }
           </tbody>
         </table>

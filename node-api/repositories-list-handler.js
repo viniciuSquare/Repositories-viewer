@@ -11,6 +11,7 @@ async function getRepositories(){
       locals: ['github'],
       title: repository.name,
       SSH_URL: repository.ssh_url,
+      likes: 0,
       url: repository.html_url
       
     }
