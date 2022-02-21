@@ -2,8 +2,9 @@ const axios = require('axios');
 const { v4: uuid } = require('uuid');
 
 async function getRepositories(){
+  let gitUsername = "viniciusquare";
   
-  let repositories = await axios.get("https://api.github.com/users/viniciusquare/repos").then(({data}) => data)
+  let repositories = await axios.get(`https://api.github.com/users/${gitUsername}/repos`).then(({data}) => data)
 
   let filteredRepositories = repositories.map( repository => {
     return { 
